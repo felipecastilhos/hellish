@@ -1,36 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Hellish : MonoBehaviour
 {
-
-    readonly float horizontalMovement = 5f;
-    readonly float verticalMovement = 5f;
+    [SerializeField] float velocity = 3f;
+    [SerializeField] private InputActionReference movement, jump, duck;
+    [SerializeField] private Animator animator;
 
     public Rigidbody2D myRigidBody;
-    // Start is called before the first frame update
+
+    private Vector2 movementDirection;
+
     void Start()
     {
         Debug.Log("Staring Hellish behaviour");
+        myRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        MovementDetection();
+        movementDirection = movement.action.ReadValue<Vector2>();
+        if (movementDirection.sqrMagnitude > 0) myRigidBody.velocity = movementDirection * velocity;
     }
 
-    void MovementDetection()
+
+    private void Movement(InputAction.CallbackContext obj)
     {
-        if (Input.anyKey)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-
-            Vector2 movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
-
-            if (movementDirection.sqrMagnitude > 0) myRigidBody.velocity = movementDirection * Mathf.Max(Mathf.Abs(horizontalMovement), Mathf.Abs(verticalMovement));
-        }
     }
 }
