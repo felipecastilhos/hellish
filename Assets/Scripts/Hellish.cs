@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Hellish : MonoBehaviour
 {
     [SerializeField] float velocity = 3f;
-    [SerializeField] private InputActionReference movement, jump, duck;
+    [SerializeField] InputActionReference movement, jump, duck;
     [SerializeField] private Animator animator;
 
     public Rigidbody2D myRigidBody;
@@ -20,12 +21,24 @@ public class Hellish : MonoBehaviour
 
     void Update()
     {
+        Run();
+    }
+
+    void Run()
+    {
         movementDirection = movement.action.ReadValue<Vector2>();
         if (movementDirection.sqrMagnitude > 0) myRigidBody.velocity = movementDirection * velocity;
+        FlipSprite();
     }
 
-
-    private void Movement(InputAction.CallbackContext obj)
+    void FlipSprite()
     {
+        float velocityX = myRigidBody.velocity.x;
+        const float xScaleMultiplier = 5; //Idk why I need this to the sprite don't stretch
+        if (Mathf.Abs(velocityX) > Mathf.Epsilon)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(velocityX) * xScaleMultiplier, transform.localScale.y, transform.localScale.z);
+        }
     }
+
 }

@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c3fb4683fa78340a8ccf0fdccc45ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 2
+  velocity: 3
   movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
   jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
