@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class Hellish : MonoBehaviour {
     [SerializeField] float velocity = 3f;
+    [SerializeField] float jumpSpeed = 15F;
     [SerializeField] InputActionReference movement, jump, duck;
     [SerializeField] private Animator animator;
 
@@ -22,6 +23,7 @@ public class Hellish : MonoBehaviour {
 
     void Update() {
         Run();
+        Jump();
     }
 
     void Run() {
@@ -31,7 +33,20 @@ public class Hellish : MonoBehaviour {
             rigidBody.velocity = movementDirection * velocity;
         }
         FlipSprite();
-        ChangeToRunningState();
+        RunningAnimationState();
+    }
+
+
+    void Jump() {
+        var isJumping = jump.action.WasPressedThisFrame();
+
+        if (isJumping) {
+            Debug.Log("Hellish is jumping");
+            Vector2 jumpVelocity = new(rigidBody.velocity.x, jumpSpeed);
+            rigidBody.velocity = jumpVelocity;
+        }
+
+        JumpingAnimationState();
     }
 
     private void FlipSprite() {
@@ -43,19 +58,24 @@ public class Hellish : MonoBehaviour {
         }
     }
 
-    private void ChangeToRunningState() { 
+    private void RunningAnimationState() {
         float velocityX = rigidBody.velocity.x;
         bool isRunning = Mathf.Abs(velocityX) > Mathf.Epsilon;
 
         animator.SetBool(HellishAnimations.Running, isRunning);
     }
 
+    private void JumpingAnimationState() {
+        float velocityY = rigidBody.velocity.y;
+        var isJumping = Mathf.Abs(velocityY) > Mathf.Epsilon;
+        animator.SetBool(HellishAnimations.Jumping, isJumping);
+    }
 
 
 }
 
 static class HellishAnimations {
-    public static readonly string Idle = "Idle";
     public static readonly string Running = "isRunning";
-    public static readonly string Duck = "Duck";
+    public static readonly string Duck = "isDucking";
+    public static readonly string Jumping = "isJumping";
 }
