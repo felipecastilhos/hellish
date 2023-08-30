@@ -12,6 +12,7 @@ public class Hellish : MonoBehaviour {
     [SerializeField] private Animator animator;
 
     public Rigidbody2D rigidBody;
+    public Collider2D hellishCollider2d;
 
     private Vector2 movementDirection;
 
@@ -19,6 +20,7 @@ public class Hellish : MonoBehaviour {
         Debug.Log("Staring Hellish behaviour");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        hellishCollider2d = GetComponent<Collider2D>();
     }
 
     void Update() {
@@ -29,7 +31,7 @@ public class Hellish : MonoBehaviour {
     void Run() {
         movementDirection = movement.action.ReadValue<Vector2>();
 
-        if (movementDirection.sqrMagnitude > 0) {
+        if (movementDirection.sqrMagnitude > Mathf.Epsilon) {
             rigidBody.velocity = movementDirection * velocity;
         }
         FlipSprite();
@@ -38,9 +40,10 @@ public class Hellish : MonoBehaviour {
 
 
     void Jump() {
-        var isJumping = jump.action.WasPressedThisFrame();
+        var jumpButtonPressed = jump.action.WasPressedThisFrame();
+        var canGetImpulse = hellishCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground")); 
 
-        if (isJumping) {
+        if (jumpButtonPressed && canGetImpulse) {
             Debug.Log("Hellish is jumping");
             Vector2 jumpVelocity = new(rigidBody.velocity.x, jumpSpeed);
             rigidBody.velocity = jumpVelocity;
