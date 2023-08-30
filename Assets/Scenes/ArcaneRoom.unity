@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 505952774}
   - component: {fileID: 505952775}
   - component: {fileID: 505952776}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1403,6 +1403,7 @@ MonoBehaviour:
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
+  hellishCollider2d: {fileID: 0}
 --- !u!114 &1722456683
 MonoBehaviour:
   m_ObjectHideFlags: 0
