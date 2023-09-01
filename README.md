@@ -1,7 +1,11 @@
 # hellish
-A geme about being a stiff mage
+A game about being a bugged jumping mage.
 
-![2023-08-23_23-08](https://github.com/felipecastilhos/hellish/assets/575708/276416c8-0fca-4e79-8885-57d680a2f944)
+This is just a toy project to practice on how to develop a plataform game in unity.
+
+![Captura de tela 2023-09-01 180217](https://github.com/felipecastilhos/hellish/assets/575708/bb25daba-2428-40b2-96e4-dfbd243dc5a0)
+
+
 
 
 ### Assets
