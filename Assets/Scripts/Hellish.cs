@@ -13,6 +13,7 @@ public class Hellish : MonoBehaviour {
 
     public Rigidbody2D rigidBody;
     public Collider2D hellishCollider2d;
+    public PolygonCollider2D feetCollider2d;
 
     private Vector2 movementDirection;
 
@@ -21,6 +22,7 @@ public class Hellish : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         hellishCollider2d = GetComponent<Collider2D>();
+        feetCollider2d = GetComponent<PolygonCollider2D>();
     }
 
     void Update() {
@@ -41,7 +43,9 @@ public class Hellish : MonoBehaviour {
 
     void Jump() {
         var jumpButtonPressed = jump.action.WasPressedThisFrame();
-        var canGetImpulse = hellishCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground")); 
+        var canGetImpulse = feetCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground")); 
+
+        Debug.Log($"canGetImpulse {canGetImpulse} ");
 
         if (jumpButtonPressed && canGetImpulse) {
             Debug.Log("Hellish is jumping");
@@ -70,6 +74,7 @@ public class Hellish : MonoBehaviour {
 
     private void JumpingAnimationState() {
         float velocityY = rigidBody.velocity.y;
+        Debug.Log($"[JumpingAnimationState] {velocityY}");
         var isJumping = Mathf.Abs(velocityY) > Mathf.Epsilon;
         animator.SetBool(HellishAnimations.Jumping, isJumping);
     }
