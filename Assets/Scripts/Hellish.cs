@@ -12,17 +12,19 @@ public class Hellish : MonoBehaviour {
     [SerializeField] private Animator animator;
 
     public Rigidbody2D rigidBody;
-    public Collider2D hellishCollider2d;
     public PolygonCollider2D feetCollider2d;
+    public CapsuleCollider2D capsuleCollider2D;
 
     private Vector2 movementDirection;
+
+    private bool isJumping;
 
     void Start() {
         Debug.Log("Staring Hellish behaviour");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        hellishCollider2d = GetComponent<Collider2D>();
         feetCollider2d = GetComponent<PolygonCollider2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     void Update() {
@@ -30,20 +32,22 @@ public class Hellish : MonoBehaviour {
         Jump();
     }
 
-    void Run() {
-        movementDirection = movement.action.ReadValue<Vector2>();
+void Run() {
+    movementDirection = movement.action.ReadValue<Vector2>().normalized;
 
-        if (movementDirection.sqrMagnitude > Mathf.Epsilon) {
-            rigidBody.velocity = movementDirection * velocity;
-        }
-        FlipSprite();
-        RunningAnimationState();
+    if (isJumping) {
+        rigidBody.velocity = new Vector2(movementDirection.x  * velocity, rigidBody.velocity.y);
+    } else {
+        rigidBody.velocity = new Vector2(movementDirection.x * velocity, 0);
     }
 
+    FlipSprite();
+    RunningAnimationState();
+}
 
     void Jump() {
         var jumpButtonPressed = jump.action.WasPressedThisFrame();
-        var canGetImpulse = feetCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground")); 
+        var canGetImpulse = feetCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
         Debug.Log($"canGetImpulse {canGetImpulse} ");
 
@@ -58,7 +62,7 @@ public class Hellish : MonoBehaviour {
 
     private void FlipSprite() {
         float velocityX = rigidBody.velocity.x;
-        const float xScaleMultiplier = 5; //Idk why I need this to the sprite don't stretch
+        const float xScaleMultiplier = 3;
 
         if (Mathf.Abs(velocityX) > Mathf.Epsilon) {
             transform.localScale = new Vector3(Mathf.Sign(velocityX) * xScaleMultiplier, transform.localScale.y, transform.localScale.z);
@@ -67,7 +71,7 @@ public class Hellish : MonoBehaviour {
 
     private void RunningAnimationState() {
         float velocityX = rigidBody.velocity.x;
-        bool isRunning = Mathf.Abs(velocityX) > Mathf.Epsilon;
+        bool isRunning = Mathf.Abs(velocityX) > Mathf.Epsilon & !isJumping;
 
         animator.SetBool(HellishAnimations.Running, isRunning);
     }
@@ -75,11 +79,9 @@ public class Hellish : MonoBehaviour {
     private void JumpingAnimationState() {
         float velocityY = rigidBody.velocity.y;
         Debug.Log($"[JumpingAnimationState] {velocityY}");
-        var isJumping = Mathf.Abs(velocityY) > Mathf.Epsilon;
+        isJumping = Mathf.Abs(velocityY) > Mathf.Epsilon;
         animator.SetBool(HellishAnimations.Jumping, isJumping);
     }
-
-
 }
 
 static class HellishAnimations {

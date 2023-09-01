@@ -2024,6 +2024,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 188084326995304162, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5779091666104049322, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
       propertyPath: m_Name
       value: Hellish
@@ -2031,6 +2035,14 @@ PrefabInstance:
     - target: {fileID: 5779091666104049323, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779091666104049323, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779091666104049323, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5779091666104049323, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
       propertyPath: m_LocalPosition.x
