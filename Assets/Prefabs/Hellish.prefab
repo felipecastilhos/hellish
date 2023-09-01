@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 1722456688}
   - component: {fileID: 1722456682}
   - component: {fileID: 1722456683}
+  - component: {fileID: 5135188588551056685}
+  - component: {fileID: 3385819103790054734}
+  - component: {fileID: 7093158007632657413}
   m_Layer: 0
   m_Name: Hellish
   m_TagString: Untagged
@@ -76,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 461146797
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1354312934, guid: f26308f78fe73ed4faa483ebf2456b24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,9 +212,92 @@ MonoBehaviour:
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
   animator: {fileID: 0}
   rigidBody: {fileID: 0}
-  hellishCollider2d: {fileID: 0}
   feetCollider2d: {fileID: 0}
+  capsuleCollider2D: {fileID: 0}
 --- !u!114 &1722456683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779091666104049322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: db177566c420b134394a238b6424a66e, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player Input
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!60 &5135188588551056685
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779091666104049322}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.030020397, y: -0.14001778}
+      - {x: -0.030006789, y: -0.15666977}
+      - {x: -0.03001963, y: -0.15999867}
+      - {x: -0.0062742718, y: -0.15986736}
+      - {x: 0.021427343, y: -0.15998545}
+      - {x: 0.02996411, y: -0.16000761}
+      - {x: 0.02991716, y: -0.1400445}
+--- !u!114 &3385819103790054734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779091666104049322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c3fb4683fa78340a8ccf0fdccc45ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+  jumpSpeed: 18
+  movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
+  jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
+  duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
+  animator: {fileID: 0}
+  rigidBody: {fileID: 0}
+  feetCollider2d: {fileID: 0}
+  capsuleCollider2D: {fileID: 0}
+--- !u!114 &7093158007632657413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
