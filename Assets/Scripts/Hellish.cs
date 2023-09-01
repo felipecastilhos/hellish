@@ -12,8 +12,8 @@ public class Hellish : MonoBehaviour {
     [SerializeField] private Animator animator;
 
     public Rigidbody2D rigidBody;
-    public Collider2D hellishCollider2d;
     public PolygonCollider2D feetCollider2d;
+    public CapsuleCollider2D capsuleCollider2D;
 
     private Vector2 movementDirection;
 
@@ -23,8 +23,8 @@ public class Hellish : MonoBehaviour {
         Debug.Log("Staring Hellish behaviour");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        hellishCollider2d = GetComponent<Collider2D>();
         feetCollider2d = GetComponent<PolygonCollider2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     void Update() {
@@ -32,16 +32,18 @@ public class Hellish : MonoBehaviour {
         Jump();
     }
 
-    void Run() {
-        movementDirection = movement.action.ReadValue<Vector2>();
+void Run() {
+    movementDirection = movement.action.ReadValue<Vector2>().normalized;
 
-        if (movementDirection.sqrMagnitude > Mathf.Epsilon) {
-            rigidBody.velocity = movementDirection * velocity;
-        }
-        FlipSprite();
-        RunningAnimationState();
+    if (isJumping) {
+        rigidBody.velocity = new Vector2(movementDirection.x  * velocity, rigidBody.velocity.y);
+    } else {
+        rigidBody.velocity = new Vector2(movementDirection.x * velocity, 0);
     }
 
+    FlipSprite();
+    RunningAnimationState();
+}
 
     void Jump() {
         var jumpButtonPressed = jump.action.WasPressedThisFrame();
@@ -80,8 +82,6 @@ public class Hellish : MonoBehaviour {
         isJumping = Mathf.Abs(velocityY) > Mathf.Epsilon;
         animator.SetBool(HellishAnimations.Jumping, isJumping);
     }
-
-
 }
 
 static class HellishAnimations {
