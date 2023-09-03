@@ -18,6 +18,7 @@ public class Hellish : MonoBehaviour {
     private Vector2 movementDirection;
 
     private bool isJumping;
+    float startingGravityScale;
 
     void Start() {
         Debug.Log("Starting Hellish behaviour");
@@ -25,6 +26,7 @@ public class Hellish : MonoBehaviour {
         animator = GetComponent<Animator>();
         feetCollider2d = GetComponent<PolygonCollider2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        startingGravityScale = rigidBody.gravityScale;
     }
 
     void Update() {
@@ -51,11 +53,11 @@ public class Hellish : MonoBehaviour {
             Vector2 jumpVelocity = new(rigidBody.velocity.x, jumpSpeed);
             rigidBody.velocity = jumpVelocity;
             isJumping = true;
-        } 
-       
-       if(canGetImpulse && rigidBody.velocity.y < Mathf.Epsilon) isJumping = false;
+        }
 
-       JumpingAnimationState(); 
+        if (canGetImpulse && rigidBody.velocity.y < Mathf.Epsilon) isJumping = false;
+
+        JumpingAnimationState();
     }
 
     void Climbing() {
@@ -65,8 +67,12 @@ public class Hellish : MonoBehaviour {
         var isClimbing = canClimb & climbButtonIsPressed;
 
         if (isClimbing) {
-            Debug.Log("She is climbing");
+            Debug.Log("She is not climbing");
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
+            rigidBody.gravityScale = 0;
+        }
+        else {
+            rigidBody.gravityScale = startingGravityScale;
         }
 
         animator.SetBool(HellishAnimations.Climbing, isClimbing);
