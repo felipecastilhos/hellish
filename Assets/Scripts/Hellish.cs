@@ -62,20 +62,26 @@ public class Hellish : MonoBehaviour {
 
     void Climbing() {
         var canClimb = capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"));
-        var climbButtonIsPressed = climb.action.IsPressed();
-        movementDirection = movement.action.ReadValue<Vector2>();
-        var isClimbing = canClimb & climbButtonIsPressed;
+        try {
+            var climbButtonIsPressed = climb.action.IsPressed();
+            movementDirection = movement.action.ReadValue<Vector2>();
+            var isClimbing = canClimb & climbButtonIsPressed;
 
-        if (isClimbing) {
-            Debug.Log("She is not climbing");
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
-            rigidBody.gravityScale = 0;
+            if (isClimbing) {
+                Debug.Log("She is not climbing");
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
+                rigidBody.gravityScale = 0;
+            }
+            else {
+                rigidBody.gravityScale = startingGravityScale;
+            }
+
+            animator.SetBool(HellishAnimations.Climbing, isClimbing);
         }
-        else {
-            rigidBody.gravityScale = startingGravityScale;
+        catch (Exception e) {
+
         }
 
-        animator.SetBool(HellishAnimations.Climbing, isClimbing);
     }
 
     private void FlipSprite() {

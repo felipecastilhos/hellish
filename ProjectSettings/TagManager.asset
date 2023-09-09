@@ -15,7 +15,7 @@ TagManager:
   - Climbing
   - Player
   - World Confiner
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Froreground Details
     uniqueID: 1920011997
+    locked: 0
+  - name: Enemy
+    uniqueID: 328643307
     locked: 0
   - name: Hellish
     uniqueID: 461146797
