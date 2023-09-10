@@ -19,7 +19,8 @@ GameObject:
   - component: {fileID: 5135188588551056685}
   - component: {fileID: 3385819103790054734}
   - component: {fileID: 7093158007632657413}
-  m_Layer: 0
+  - component: {fileID: 1722456696}
+  m_Layer: 8
   m_Name: Hellish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 461146797
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1354312934, guid: f26308f78fe73ed4faa483ebf2456b24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -168,7 +169,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779091666104049322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -206,14 +207,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  jumpSpeed: 18
+  jumpSpeed: 14
   movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
   jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
-  animator: {fileID: 0}
-  rigidBody: {fileID: 0}
-  feetCollider2d: {fileID: 0}
-  capsuleCollider2D: {fileID: 0}
+  climb: {fileID: 3680589009351222286, guid: db177566c420b134394a238b6424a66e, type: 3}
+  animator: {fileID: 5779091666104049321}
+  rigidBody: {fileID: 188084326995304162}
+  feetCollider: {fileID: 0}
+  capsuleCollider: {fileID: 0}
 --- !u!114 &1722456683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +253,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5779091666104049322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -289,14 +291,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  jumpSpeed: 18
+  jumpSpeed: 14
   movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
   jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
+  climb: {fileID: 0}
   animator: {fileID: 0}
-  rigidBody: {fileID: 0}
-  feetCollider2d: {fileID: 0}
-  capsuleCollider2D: {fileID: 0}
+  rigidBody: {fileID: 188084326995304162}
+  feetCollider: {fileID: 1722456681}
+  capsuleCollider: {fileID: 1722456696}
 --- !u!114 &7093158007632657413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,3 +330,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player Input
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &1722456696
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779091666104049322}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 40a1a8eaf396e334f9bc206af53dea99, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.008456707, y: -0.01902767}
+  m_Size: {x: 0.1635507, y: 0.2819448}
+  m_Direction: 0

@@ -12,8 +12,8 @@ public class Hellish : MonoBehaviour {
     [SerializeField] private Animator animator;
 
     public Rigidbody2D rigidBody;
-    public PolygonCollider2D feetCollider2d;
-    public CapsuleCollider2D capsuleCollider2D;
+    public BoxCollider2D feetCollider;
+    public CapsuleCollider2D capsuleCollider;
 
     private Vector2 movementDirection;
 
@@ -24,8 +24,8 @@ public class Hellish : MonoBehaviour {
         Debug.Log("Starting Hellish behaviour");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        feetCollider2d = GetComponent<PolygonCollider2D>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         startingGravityScale = rigidBody.gravityScale;
     }
 
@@ -44,7 +44,7 @@ public class Hellish : MonoBehaviour {
 
     void Jump() {
         var jumpButtonPressed = jump.action.WasPressedThisFrame();
-        var canGetImpulse = feetCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        var canGetImpulse = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
         Debug.Log($"canGetImpulse {canGetImpulse} ");
 
@@ -61,7 +61,7 @@ public class Hellish : MonoBehaviour {
     }
 
     void Climbing() {
-        var canClimb = capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        var canClimb = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
         try {
             var climbButtonIsPressed = climb.action.IsPressed();
             movementDirection = movement.action.ReadValue<Vector2>();
