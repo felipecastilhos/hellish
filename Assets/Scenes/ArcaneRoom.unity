@@ -7465,6 +7465,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3385819103790054734, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
+      propertyPath: hitKick.x
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5779091666104049322, guid: ac47d54c725569f43bf565dbd111270f, type: 3}
       propertyPath: m_Name
       value: Hellish

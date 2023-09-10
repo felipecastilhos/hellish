@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public class Hellish : MonoBehaviour {
     [SerializeField] float velocity = 3f;
     [SerializeField] float jumpSpeed = 15F;
+    [SerializeField] Vector2 hitKick = new(15f, 2f);
     [SerializeField] InputActionReference movement, jump, duck, climb;
     [SerializeField] private Animator animator;
 
@@ -29,9 +30,10 @@ public class Hellish : MonoBehaviour {
     }
 
     void Update() {
-        Climbing();
         Run();
         Jump();
+        Climbing();
+        WasHit();
     }
 
     void Run() {
@@ -62,7 +64,7 @@ public class Hellish : MonoBehaviour {
         var climbButtonIsPressed = climb.action.IsPressed();
         movementDirection = movement.action.ReadValue<Vector2>();
         var isClimbing = canClimb & climbButtonIsPressed;
-            Debug.Log("She is BANANAS");
+        Debug.Log("She is BANANAS");
 
         if (isClimbing) {
             Debug.Log("She is climbing");
@@ -76,6 +78,16 @@ public class Hellish : MonoBehaviour {
 
         animator.SetBool(HellishAnimations.Climbing, isClimbing);
 
+    }
+
+    private void WasHit() {
+        var wasHit = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy"));
+        if (wasHit) {
+            rigidBody.velocity = hitKick * new Vector2(-transform.localScale.x, 1f);
+            HitAnimationState();
+        } else { 
+            HitAnimationState(false);
+        }
     }
 
     private void FlipSprite() {
@@ -97,6 +109,10 @@ public class Hellish : MonoBehaviour {
     private void JumpingAnimationState() {
         animator.SetBool(HellishAnimations.Jumping, isJumping);
     }
+
+    private void HitAnimationState(bool isHit = true) { 
+        animator.SetBool(HellishAnimations.IsHit, isHit);
+    }
 }
 
 static class HellishAnimations {
@@ -104,4 +120,6 @@ static class HellishAnimations {
     public static readonly string Duck = "isDucking";
     public static readonly string Jumping = "isJumping";
     public static readonly string Climbing = "isClimbing";
+    public static readonly string IsHit = "isHit";
+
 }
