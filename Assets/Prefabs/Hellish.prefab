@@ -269,6 +269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   jumpSpeed: 14
+  knockBackForce: {x: 1, y: 6}
+  stunTime: 1
   movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
   jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}

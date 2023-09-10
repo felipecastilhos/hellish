@@ -8,7 +8,8 @@ using UnityEngine.Tilemaps;
 public class Hellish : MonoBehaviour {
     [SerializeField] float velocity = 3f;
     [SerializeField] float jumpSpeed = 15F;
-    [SerializeField] Vector2 hitKick = new(15f, 2f);
+    [SerializeField] Vector2 knockBackForce = new(1f, 6f);
+    [SerializeField] float stunTime = 1f;
     [SerializeField] InputActionReference movement, jump, duck, climb;
     [SerializeField] private Animator animator;
 
@@ -19,6 +20,7 @@ public class Hellish : MonoBehaviour {
     private Vector2 movementDirection;
 
     private bool isJumping;
+    private bool isStunned;
     float startingGravityScale;
 
     void Start() {
@@ -30,10 +32,12 @@ public class Hellish : MonoBehaviour {
     }
 
     void Update() {
-        Run();
-        Jump();
-        Climbing();
-        WasHit();
+        if (!isStunned) {
+            Run();
+            Jump();
+            Climbing();
+            WasHit();
+        }
     }
 
     void Run() {
@@ -83,11 +87,19 @@ public class Hellish : MonoBehaviour {
     private void WasHit() {
         var wasHit = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy"));
         if (wasHit) {
-            rigidBody.velocity = hitKick * new Vector2(-transform.localScale.x, 1f);
+            rigidBody.velocity = knockBackForce * new Vector2(-transform.localScale.x, 1f);
             HitAnimationState();
-        } else { 
+            StartCoroutine(StunHer());
+        }
+        else {
             HitAnimationState(false);
         }
+    }
+
+    IEnumerator StunHer() { 
+        isStunned = true;
+        yield return new WaitForSeconds(stunTime);
+        isStunned = false;
     }
 
     private void FlipSprite() {
@@ -110,7 +122,7 @@ public class Hellish : MonoBehaviour {
         animator.SetBool(HellishAnimations.Jumping, isJumping);
     }
 
-    private void HitAnimationState(bool isHit = true) { 
+    private void HitAnimationState(bool isHit = true) {
         animator.SetBool(HellishAnimations.IsHit, isHit);
     }
 }
