@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 188084326995304162}
   - component: {fileID: 1722456681}
   - component: {fileID: 1722456688}
-  - component: {fileID: 1722456682}
   - component: {fileID: 1722456683}
   - component: {fileID: 5135188588551056685}
   - component: {fileID: 3385819103790054734}
@@ -194,28 +193,6 @@ PolygonCollider2D:
       - {x: 0.021427343, y: -0.15998545}
       - {x: 0.02996411, y: -0.16000761}
       - {x: 0.02991716, y: -0.1400445}
---- !u!114 &1722456682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779091666104049322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c3fb4683fa78340a8ccf0fdccc45ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 5
-  jumpSpeed: 14
-  movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
-  jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
-  duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
-  climb: {fileID: 3680589009351222286, guid: db177566c420b134394a238b6424a66e, type: 3}
-  animator: {fileID: 5779091666104049321}
-  rigidBody: {fileID: 188084326995304162}
-  feetCollider: {fileID: 0}
-  capsuleCollider: {fileID: 0}
 --- !u!114 &1722456683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,8 +272,8 @@ MonoBehaviour:
   movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
   jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
   duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
-  climb: {fileID: 0}
-  animator: {fileID: 0}
+  climb: {fileID: 3680589009351222286, guid: db177566c420b134394a238b6424a66e, type: 3}
+  animator: {fileID: 5779091666104049321}
   rigidBody: {fileID: 188084326995304162}
   feetCollider: {fileID: 1722456681}
   capsuleCollider: {fileID: 1722456696}

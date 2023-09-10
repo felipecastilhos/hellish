@@ -21,7 +21,6 @@ public class Hellish : MonoBehaviour {
     float startingGravityScale;
 
     void Start() {
-        Debug.Log("Starting Hellish behaviour");
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         feetCollider = GetComponent<BoxCollider2D>();
@@ -30,9 +29,9 @@ public class Hellish : MonoBehaviour {
     }
 
     void Update() {
+        Climbing();
         Run();
         Jump();
-        Climbing();
     }
 
     void Run() {
@@ -46,10 +45,8 @@ public class Hellish : MonoBehaviour {
         var jumpButtonPressed = jump.action.WasPressedThisFrame();
         var canGetImpulse = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        Debug.Log($"canGetImpulse {canGetImpulse} ");
 
         if (jumpButtonPressed && canGetImpulse) {
-            Debug.Log("Hellish is jumping");
             Vector2 jumpVelocity = new(rigidBody.velocity.x, jumpSpeed);
             rigidBody.velocity = jumpVelocity;
             isJumping = true;
@@ -62,25 +59,22 @@ public class Hellish : MonoBehaviour {
 
     void Climbing() {
         var canClimb = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
-        try {
-            var climbButtonIsPressed = climb.action.IsPressed();
-            movementDirection = movement.action.ReadValue<Vector2>();
-            var isClimbing = canClimb & climbButtonIsPressed;
+        var climbButtonIsPressed = climb.action.IsPressed();
+        movementDirection = movement.action.ReadValue<Vector2>();
+        var isClimbing = canClimb & climbButtonIsPressed;
+            Debug.Log("She is BANANAS");
 
-            if (isClimbing) {
-                Debug.Log("She is not climbing");
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
-                rigidBody.gravityScale = 0;
-            }
-            else {
-                rigidBody.gravityScale = startingGravityScale;
-            }
-
-            animator.SetBool(HellishAnimations.Climbing, isClimbing);
+        if (isClimbing) {
+            Debug.Log("She is climbing");
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
+            rigidBody.gravityScale = 0;
         }
-        catch (Exception e) {
-
+        else {
+            Debug.Log("She is not climbing");
+            rigidBody.gravityScale = startingGravityScale;
         }
+
+        animator.SetBool(HellishAnimations.Climbing, isClimbing);
 
     }
 

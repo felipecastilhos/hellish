@@ -22,7 +22,6 @@ public class FrogEnemy : MonoBehaviour {
     }
 
     private void JumpAround() {
-        Debug.Log("Frog enemy is moving");
         if (isFacingLeft()) {
             enemyRigidbody.velocity = new(-enemyRunSpeed, 0f);
         }
@@ -32,7 +31,6 @@ public class FrogEnemy : MonoBehaviour {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("Frog enemy step outside the ground");
         FlipSprite();
         RunBack();
     }
@@ -47,7 +45,6 @@ public class FrogEnemy : MonoBehaviour {
 
 
     private void FlipSprite() {
-        Debug.Log($"Flip Sprite: {Mathf.Sign(enemyRigidbody.velocity.x)}");
         float velocityX = enemyRigidbody.velocity.x;
 
         float direction = Mathf.Sign(velocityX);
