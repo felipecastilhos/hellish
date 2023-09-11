@@ -27,7 +27,10 @@ public enum GameLayer {
     WorldConfiner = 9,
 
     [LayerName("Enemy")]
-    Enemy = 10
+    Enemy = 10,
+
+    [LayerName("Bomb")]
+    Bomb = 11
 }
 
 public class LayerNameAttribute : System.Attribute {
