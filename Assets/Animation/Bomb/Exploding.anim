@@ -22,7 +22,7 @@ AnimationClip:
     - time: 0
       value: {fileID: -333450063, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - time: 0.083333336
-      value: {fileID: -1777517490, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
+      value: {fileID: -333450063, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - time: 0.16666667
       value: {fileID: 1034335107, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - time: 0.25
@@ -49,7 +49,7 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -333450063, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
-    - {fileID: -1777517490, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
+    - {fileID: -333450063, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - {fileID: 1034335107, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - {fileID: -588888906, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
     - {fileID: 26037876, guid: b43ffda5ef036a44a83a731b7deb4fa2, type: 3}
@@ -77,4 +77,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.41666666
+    functionName: destroyBomb
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
