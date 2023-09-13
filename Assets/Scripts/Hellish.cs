@@ -68,15 +68,12 @@ public class Hellish : MonoBehaviour {
         var climbButtonIsPressed = climb.action.IsPressed();
         movementDirection = movement.action.ReadValue<Vector2>();
         var isClimbing = canClimb & climbButtonIsPressed;
-        Debug.Log("She is BANANAS");
 
         if (isClimbing) {
-            Debug.Log("She is climbing");
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, movementDirection.y * velocity);
             rigidBody.gravityScale = 0;
         }
         else {
-            Debug.Log("She is not climbing");
             rigidBody.gravityScale = startingGravityScale;
         }
 
