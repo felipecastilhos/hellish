@@ -10,7 +10,7 @@ public class Hellish : MonoBehaviour {
     [SerializeField] float jumpSpeed = 15F;
     [SerializeField] Vector2 knockBackForce = new(1f, 6f);
     [SerializeField] float stunTime = 1f;
-    [SerializeField] InputActionReference movement, jump, duck, climb;
+    [SerializeField] InputActionReference movement, jump, duck, climb, attack;
     [SerializeField] private Animator animator;
 
     public Rigidbody2D rigidBody;
@@ -35,6 +35,7 @@ public class Hellish : MonoBehaviour {
         if (!isStunned) {
             Run();
             Jump();
+            Attack();
             Climbing();
             WasHit();
         }
@@ -82,6 +83,15 @@ public class Hellish : MonoBehaviour {
 
     }
 
+
+    //Attacks and Skills
+    void Attack() {
+        var attackButtonPressed = attack.action.WasPressedThisFrame();
+        if (attackButtonPressed) {
+            AttackAnimationState(attackButtonPressed);
+        }
+    }
+
     //--Effects
     public void WasHit() {
         var wasHit = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy"));
@@ -112,6 +122,8 @@ public class Hellish : MonoBehaviour {
         }
     }
 
+    private void AttackAnimationState(bool isHit = true) => animator.SetTrigger("isAttacking");
+
     private void RunningAnimationState() {
         float velocityX = rigidBody.velocity.x;
         bool isRunning = Mathf.Abs(velocityX) > Mathf.Epsilon & !isJumping;
@@ -119,13 +131,11 @@ public class Hellish : MonoBehaviour {
         animator.SetBool(HellishAnimations.Running, isRunning);
     }
 
-    private void JumpingAnimationState() {
-        animator.SetBool(HellishAnimations.Jumping, isJumping);
-    }
+    private void JumpingAnimationState() => animator.SetBool(HellishAnimations.Jumping, isJumping);
 
-    private void HitAnimationState(bool isHit = true) {
+    private void HitAnimationState(bool isHit = true) =>
         animator.SetBool(HellishAnimations.IsHit, isHit);
-    }
+
 }
 
 static class HellishAnimations {
@@ -134,5 +144,6 @@ static class HellishAnimations {
     public static readonly string Jumping = "isJumping";
     public static readonly string Climbing = "isClimbing";
     public static readonly string IsHit = "isHit";
+    public static readonly string Attacking = "isAttacking";
 
 }

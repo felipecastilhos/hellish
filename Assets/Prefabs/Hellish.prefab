@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779091666104049323}
+  - component: {fileID: 3385819103790054734}
   - component: {fileID: 5779091666104049320}
   - component: {fileID: 5779091666104049321}
   - component: {fileID: 188084326995304162}
@@ -16,7 +17,6 @@ GameObject:
   - component: {fileID: 1722456688}
   - component: {fileID: 1722456683}
   - component: {fileID: 5135188588551056685}
-  - component: {fileID: 3385819103790054734}
   - component: {fileID: 7093158007632657413}
   - component: {fileID: 1722456696}
   m_Layer: 8
@@ -41,6 +41,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3385819103790054734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779091666104049322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c3fb4683fa78340a8ccf0fdccc45ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+  jumpSpeed: 14
+  knockBackForce: {x: 1, y: 6}
+  stunTime: 1
+  movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
+  jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
+  duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
+  climb: {fileID: 3680589009351222286, guid: db177566c420b134394a238b6424a66e, type: 3}
+  attack: {fileID: -4106633555630672266, guid: db177566c420b134394a238b6424a66e, type: 3}
+  animator: {fileID: 5779091666104049321}
+  rigidBody: {fileID: 188084326995304162}
+  feetCollider: {fileID: 1722456681}
+  capsuleCollider: {fileID: 1722456696}
 --- !u!212 &5779091666104049320
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 461146797
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1354312934, guid: f26308f78fe73ed4faa483ebf2456b24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -255,30 +280,6 @@ PolygonCollider2D:
       - {x: 0.021427343, y: -0.15998545}
       - {x: 0.02996411, y: -0.16000761}
       - {x: 0.02991716, y: -0.1400445}
---- !u!114 &3385819103790054734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779091666104049322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c3fb4683fa78340a8ccf0fdccc45ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 5
-  jumpSpeed: 14
-  knockBackForce: {x: 1, y: 6}
-  stunTime: 1
-  movement: {fileID: -2905050026749020447, guid: db177566c420b134394a238b6424a66e, type: 3}
-  jump: {fileID: -8942692408128665122, guid: db177566c420b134394a238b6424a66e, type: 3}
-  duck: {fileID: 7939243887194570856, guid: db177566c420b134394a238b6424a66e, type: 3}
-  climb: {fileID: 3680589009351222286, guid: db177566c420b134394a238b6424a66e, type: 3}
-  animator: {fileID: 5779091666104049321}
-  rigidBody: {fileID: 188084326995304162}
-  feetCollider: {fileID: 1722456681}
-  capsuleCollider: {fileID: 1722456696}
 --- !u!114 &7093158007632657413
 MonoBehaviour:
   m_ObjectHideFlags: 0
