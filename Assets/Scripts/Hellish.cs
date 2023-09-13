@@ -40,6 +40,7 @@ public class Hellish : MonoBehaviour {
         }
     }
 
+    //--Movements
     void Run() {
         movementDirection = movement.action.ReadValue<Vector2>().normalized;
         rigidBody.velocity = new Vector2(movementDirection.x * velocity, rigidBody.velocity.y);
@@ -81,7 +82,8 @@ public class Hellish : MonoBehaviour {
 
     }
 
-    private void WasHit() {
+    //--Effects
+    public void WasHit() {
         var wasHit = capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy"));
         if (wasHit) {
             rigidBody.velocity = knockBackForce * new Vector2(-transform.localScale.x, 1f);
@@ -93,11 +95,13 @@ public class Hellish : MonoBehaviour {
         }
     }
 
-    IEnumerator StunHer() { 
+    IEnumerator StunHer() {
         isStunned = true;
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
     }
+
+    //--Animations
 
     private void FlipSprite() {
         float velocityX = rigidBody.velocity.x;
